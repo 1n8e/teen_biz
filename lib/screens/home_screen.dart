@@ -42,16 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       child: Row(
         children: [
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              color: AppTheme.primary,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Icon(Icons.bolt, color: Colors.white, size: 22),
-          ),
-          const SizedBox(width: 10),
+          Image.asset('assets/logo.jpg', width: 48, height: 48),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     color: AppTheme.primary,
+          //     borderRadius: BorderRadius.circular(10),
+          //   ),
+          //   child: const Icon(Icons.bolt, color: Colors.white, size: 22),
+          // ),
+          const SizedBox(width: 5),
           const Text(
             'TeenBiz',
             style: TextStyle(
@@ -122,11 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 16),
           const Text(
             'Находи заказы, развивай навыки и зарабатывай —\nвсё под защитой родителей и модераторов',
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: 15,
-              height: 1.5,
-            ),
+            style: TextStyle(color: Colors.white70, fontSize: 15, height: 1.5),
           ),
           const SizedBox(height: 32),
           Row(
@@ -187,17 +182,11 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 6),
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w800,
-            ),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
           ),
           Text(
             label,
-            style: const TextStyle(
-              fontSize: 11,
-              color: AppTheme.textSecondary,
-            ),
+            style: const TextStyle(fontSize: 11, color: AppTheme.textSecondary),
             textAlign: TextAlign.center,
           ),
         ],
@@ -206,7 +195,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _divider() {
-    return Container(width: 1, height: 40, color: Theme.of(context).colorScheme.outlineVariant);
+    return Container(
+      width: 1,
+      height: 40,
+      color: Theme.of(context).colorScheme.outlineVariant,
+    );
   }
 
   Widget _buildHowItWorks() {
@@ -215,19 +208,22 @@ class _HomeScreenState extends State<HomeScreen> {
         'icon': Icons.person_add,
         'color': AppTheme.primary,
         'title': 'Регистрируйся',
-        'desc': 'Создай аккаунт, пройди верификацию. Если тебе до 18 — получи согласие родителей',
+        'desc':
+            'Создай аккаунт, пройди верификацию. Если тебе до 18 — получи согласие родителей',
       },
       {
         'icon': Icons.search,
         'color': AppTheme.accent,
         'title': 'Находи заказы',
-        'desc': 'Ищи задания по городу, цене и формату. Откликайся и обсуждай детали в безопасном чате',
+        'desc':
+            'Ищи задания по городу, цене и формату. Откликайся и обсуждай детали в безопасном чате',
       },
       {
         'icon': Icons.payments,
         'color': const Color(0xFFF59E0B),
         'title': 'Получай оплату',
-        'desc': 'Деньги хранятся в эскроу до выполнения. После подтверждения — сразу на баланс',
+        'desc':
+            'Деньги хранятся в эскроу до выполнения. После подтверждения — сразу на баланс',
       },
     ];
 
@@ -238,10 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const Text(
             'Как это работает',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w800,
-            ),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 6),
           const Text(
@@ -273,7 +266,11 @@ class _HomeScreenState extends State<HomeScreen> {
               color: (data['color'] as Color).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(data['icon'] as IconData, color: data['color'] as Color, size: 24),
+            child: Icon(
+              data['icon'] as IconData,
+              color: data['color'] as Color,
+              size: 24,
+            ),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -283,7 +280,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: AppTheme.primary,
                         borderRadius: BorderRadius.circular(6),
@@ -303,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 15,
-                                ),
+                      ),
                     ),
                   ],
                 ),
@@ -354,10 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'Ваша безопасность',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 17,
-                            ),
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
                   ),
                   Text(
                     'Мы объясняем КАК мы защищаем',
@@ -380,9 +377,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, '/safety'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.accent,
-              ),
+              style: ElevatedButton.styleFrom(backgroundColor: AppTheme.accent),
               child: const Text('Подробнее о безопасности'),
             ),
           ),
@@ -400,10 +395,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 10),
           Text(
             text,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
-            ),
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
           ),
         ],
       ),
@@ -414,17 +406,20 @@ class _HomeScreenState extends State<HomeScreen> {
     final reviews = [
       {
         'name': 'Амалия О., 16 лет',
-        'text': 'Заработала на уроки музыки, помогая с репетиторством. Родители довольны — всё прозрачно!',
+        'text':
+            'Заработала на уроки музыки, помогая с репетиторством. Родители довольны — всё прозрачно!',
         'stars': 5,
       },
       {
         'name': 'Максим Д., 17 лет',
-        'text': 'Делаю сайты и логотипы. За первый месяц получил 3 заказа. Очень удобный поиск клиентов.',
+        'text':
+            'Делаю сайты и логотипы. За первый месяц получил 3 заказа. Очень удобный поиск клиентов.',
         'stars': 5,
       },
       {
         'name': 'Сауле Т., 15 лет',
-        'text': 'Помогаю соседям с выгулом собак. Безопасно и легально. Рекомендую всем!',
+        'text':
+            'Помогаю соседям с выгулом собак. Безопасно и легально. Рекомендую всем!',
         'stars': 4,
       },
     ];
@@ -436,10 +431,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const Text(
             'Отзывы пользователей',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w800,
-            ),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 16),
           SizedBox(
@@ -456,7 +448,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.surface,
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.outlineVariant,
+                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -464,7 +458,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         children: List.generate(
                           r['stars'] as int,
-                          (_) => const Icon(Icons.star, color: Color(0xFFF59E0B), size: 16),
+                          (_) => const Icon(
+                            Icons.star,
+                            color: Color(0xFFF59E0B),
+                            size: 16,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -483,7 +481,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 13,
-                                    ),
+                        ),
                       ),
                     ],
                   ),
@@ -510,15 +508,16 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const Text(
             'Тарифы',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w800,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 14),
           _tariffRow(Icons.percent, '7% комиссия', 'Только с успешных заказов'),
           _tariffRow(Icons.rocket_launch, 'Продвижение', 'Выведи услугу в топ'),
-          _tariffRow(Icons.workspace_premium, 'Премиум', 'Больше откликов и заказов'),
+          _tariffRow(
+            Icons.workspace_premium,
+            'Премиум',
+            'Больше откликов и заказов',
+          ),
           _tariffRow(Icons.school, 'Партнёрства', 'Образовательные центры'),
         ],
       ),
@@ -543,11 +542,20 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title,
-                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
-              Text(sub,
-                  style: const TextStyle(
-                      color: AppTheme.textSecondary, fontSize: 12)),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                ),
+              ),
+              Text(
+                sub,
+                style: const TextStyle(
+                  color: AppTheme.textSecondary,
+                  fontSize: 12,
+                ),
+              ),
             ],
           ),
         ],
@@ -641,10 +649,26 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       destinations: const [
-        NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Главная'),
-        NavigationDestination(icon: Icon(Icons.search_outlined), selectedIcon: Icon(Icons.search), label: 'Поиск'),
-        NavigationDestination(icon: Icon(Icons.assignment_outlined), selectedIcon: Icon(Icons.assignment), label: 'Заказы'),
-        NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Профиль'),
+        NavigationDestination(
+          icon: Icon(Icons.home_outlined),
+          selectedIcon: Icon(Icons.home),
+          label: 'Главная',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.search_outlined),
+          selectedIcon: Icon(Icons.search),
+          label: 'Поиск',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.assignment_outlined),
+          selectedIcon: Icon(Icons.assignment),
+          label: 'Заказы',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.person_outline),
+          selectedIcon: Icon(Icons.person),
+          label: 'Профиль',
+        ),
       ],
     );
   }

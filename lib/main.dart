@@ -8,6 +8,7 @@ import 'screens/order_screen.dart';
 import 'screens/faq_screen.dart';
 import 'screens/policy_screen.dart';
 import 'screens/settings_screen.dart';
+import 'screens/splash_screen.dart';
 import 'theme.dart';
 import 'theme_notifier.dart';
 
@@ -29,8 +30,9 @@ class TeenBizApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: mode,
-          initialRoute: '/',
+          initialRoute: '/splash',
           routes: {
+            '/splash': (context) => const SplashScreen(),
             '/': (context) => const HomeScreen(),
             '/register': (context) => const RegisterScreen(),
             '/safety': (context) => const SafetyScreen(),
