@@ -92,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 children: [
                   CircleAvatar(
                     radius: 44,
-                    backgroundColor: const Color(0xFFEDE9FE),
+                    backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                     child: const Text(
                       'АО',
                       style: TextStyle(
@@ -143,7 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFEDE9FE),
+                            color: Theme.of(context).colorScheme.primaryContainer,
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: const Text(
@@ -162,7 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFD1FAE5),
+                            color: Theme.of(context).colorScheme.secondaryContainer,
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: const Row(
@@ -287,7 +287,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   Widget _statDivider() =>
-      Container(width: 1, height: 32, color: const Color(0xFFE5E7EB));
+      Container(width: 1, height: 32, color: Theme.of(context).colorScheme.outlineVariant);
 
   Widget _buildServicesTab() {
     final services = [
@@ -320,7 +320,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             width: 52,
             height: 52,
             decoration: BoxDecoration(
-              color: const Color(0xFFEDE9FE),
+              color: Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(10),
             ),
             child: const Icon(Icons.work_outline, color: AppTheme.primary),
@@ -448,7 +448,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           padding: const EdgeInsets.all(14),
           margin: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
-            color: const Color(0xFFEDE9FE),
+            color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(12),
           ),
           child: const Row(
@@ -607,7 +607,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             children: [
               CircleAvatar(
                 radius: 18,
-                backgroundColor: const Color(0xFFEDE9FE),
+                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                 child: Text(
                   (r['name'] as String)[0],
                   style: const TextStyle(

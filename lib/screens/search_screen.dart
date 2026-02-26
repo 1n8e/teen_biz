@@ -258,7 +258,7 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
-          color: const Color(0xFFEDE9FE),
+          color: Theme.of(context).colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
@@ -346,7 +346,7 @@ class _SearchScreenState extends State<SearchScreen> {
               children: [
                 CircleAvatar(
                   radius: 22,
-                  backgroundColor: const Color(0xFFEDE9FE),
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                   child: Text(
                     (s['name'] as String)[0],
                     style: const TextStyle(
@@ -362,11 +362,15 @@ class _SearchScreenState extends State<SearchScreen> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            s['name'] as String,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
+                          Flexible(
+                            child: Text(
+                              s['name'] as String,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 6),
@@ -376,7 +380,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               vertical: 1,
                             ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFEDE9FE),
+                              color: Theme.of(context).colorScheme.primaryContainer,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(

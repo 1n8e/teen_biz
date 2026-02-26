@@ -55,124 +55,141 @@ class _OrderScreenState extends State<OrderScreen>
   }
 
   Widget _buildStep0Form() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _serviceInfo(),
-          const SizedBox(height: 20),
-          _sectionTitle('Описание задания'),
-          TextField(
-            maxLines: 4,
-            decoration: const InputDecoration(
-              hintText: 'Опишите что нужно сделать...',
-            ),
-          ),
-          const SizedBox(height: 16),
-          _sectionTitle('Срок выполнения'),
-          TextField(
-            readOnly: true,
-            decoration: const InputDecoration(
-              hintText: 'Выберите дату',
-              prefixIcon: Icon(Icons.calendar_today_outlined),
-            ),
-            onTap: () async {
-              await showDatePicker(
-                context: context,
-                initialDate: DateTime.now().add(const Duration(days: 3)),
-                firstDate: DateTime.now(),
-                lastDate: DateTime.now().add(const Duration(days: 90)),
-              );
-            },
-          ),
-          const SizedBox(height: 16),
-          _sectionTitle('Бюджет'),
-          TextField(
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              hintText: '2000',
-              prefixIcon: Icon(Icons.paid_outlined),
-              suffixText: '₸',
-            ),
-          ),
-          const SizedBox(height: 20),
-          Container(
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondaryContainer,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppTheme.accent.withValues(alpha: 0.35)),
-            ),
-            child: const Row(
-              children: [
-                Icon(Icons.lock, color: AppTheme.accent, size: 18),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    'Оплата через эскроу: деньги заморозятся до выполнения заказа',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppTheme.accent,
-                      height: 1.4,
-                    ),
-                  ),
+    return Column(
+      children: [
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+            children: [
+              _serviceInfo(),
+              const SizedBox(height: 20),
+              _sectionTitle('Описание задания'),
+              TextField(
+                maxLines: 4,
+                decoration: const InputDecoration(
+                  hintText: 'Опишите что нужно сделать...',
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 16),
+              _sectionTitle('Срок выполнения'),
+              TextField(
+                readOnly: true,
+                decoration: const InputDecoration(
+                  hintText: 'Выберите дату',
+                  prefixIcon: Icon(Icons.calendar_today_outlined),
+                ),
+                onTap: () async {
+                  await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now().add(const Duration(days: 3)),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now().add(const Duration(days: 90)),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              _sectionTitle('Бюджет'),
+              TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  hintText: '2000',
+                  prefixIcon: Icon(Icons.paid_outlined),
+                  suffixText: '₸',
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppTheme.accent.withValues(alpha: 0.35)),
+                ),
+                child: const Row(
+                  children: [
+                    Icon(Icons.lock, color: AppTheme.accent, size: 18),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        'Оплата через эскроу: деньги заморозятся до выполнения заказа',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppTheme.accent,
+                          height: 1.4,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 24),
-          SizedBox(
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+          child: SizedBox(
             width: double.infinity,
+            height: 52,
             child: ElevatedButton(
               onPressed: () => setState(() => _orderStep = 1),
               child: const Text('Перейти к оплате'),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   Widget _buildStep1Escrow() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _progressRow(['Заказ', 'Оплата', 'Готово'], 1),
-          const SizedBox(height: 24),
-          const Text(
-            'Эскроу-оплата',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+    return Column(
+      children: [
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+            children: [
+              _progressRow(['Заказ', 'Оплата', 'Готово'], 1),
+              const SizedBox(height: 24),
+              const Text(
+                'Эскроу-оплата',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 6),
+              const Text(
+                'Деньги будут заморожены на платформе до подтверждения выполнения',
+                style: TextStyle(color: AppTheme.textSecondary, fontSize: 14),
+              ),
+              const SizedBox(height: 24),
+              _escrowCard(),
+              const SizedBox(height: 16),
+              _escrowSteps(),
+            ],
           ),
-          const SizedBox(height: 6),
-          const Text(
-            'Деньги будут заморожены на платформе до подтверждения выполнения',
-            style: TextStyle(color: AppTheme.textSecondary, fontSize: 14),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+          child: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: ElevatedButton(
+                  onPressed: () => setState(() => _orderStep = 2),
+                  child: const Text('Оплатить и создать заказ'),
+                ),
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                height: 44,
+                child: OutlinedButton(
+                  onPressed: () => setState(() => _orderStep = 0),
+                  child: const Text('Назад'),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 24),
-          _escrowCard(),
-          const SizedBox(height: 16),
-          _escrowSteps(),
-          const SizedBox(height: 24),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () => setState(() => _orderStep = 2),
-              child: const Text('Оплатить и создать заказ'),
-            ),
-          ),
-          const SizedBox(height: 12),
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton(
-              onPressed: () => setState(() => _orderStep = 0),
-              child: const Text('Назад'),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -185,8 +202,8 @@ class _OrderScreenState extends State<OrderScreen>
           Container(
             width: 96,
             height: 96,
-            decoration: const BoxDecoration(
-              color: Color(0xFFD1FAE5),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondaryContainer,
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.check, color: AppTheme.accent, size: 48),
@@ -310,15 +327,19 @@ class _OrderScreenState extends State<OrderScreen>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    o['title'] as String,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15,
+                  Expanded(
+                    child: Text(
+                      o['title'] as String,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 15,
+                      ),
                     ),
                   ),
+                  const SizedBox(width: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
@@ -629,7 +650,7 @@ class _OrderScreenState extends State<OrderScreen>
                       decoration: BoxDecoration(
                         color: active
                             ? AppTheme.primary
-                            : const Color(0xFFE5E7EB),
+                            : Theme.of(context).colorScheme.outlineVariant,
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),

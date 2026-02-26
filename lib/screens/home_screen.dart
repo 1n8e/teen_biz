@@ -16,19 +16,24 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppTheme.surface,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _buildHeader(context),
-              _buildHero(context),
-              _buildStats(),
-              _buildHowItWorks(),
-              _buildSafetyBlock(context),
-              _buildReviews(),
-              _buildMonetization(),
-              _buildFooter(context),
-            ],
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 640),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildHeader(context),
+                  _buildHero(context),
+                  _buildStats(),
+                  _buildHowItWorks(),
+                  _buildSafetyBlock(context),
+                  _buildReviews(),
+                  _buildMonetization(),
+                  _buildFooter(context),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -130,19 +135,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ElevatedButton.icon(
                   onPressed: () => Navigator.pushNamed(context, '/search'),
                   icon: const Icon(Icons.search),
-                  label: const Text('Найти исполнителя'),
+                  label: const Text(
+                    'Найти исполнителя',
+                    style: TextStyle(fontSize: 13),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.surface,
                     foregroundColor: AppTheme.primary,
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 6),
               Expanded(
                 child: OutlinedButton.icon(
                   onPressed: () => Navigator.pushNamed(context, '/register'),
                   icon: const Icon(Icons.trending_up),
-                  label: const Text('Начать зарабатывать'),
+                  label: const Text(
+                    'Начать зарабатывать',
+                    style: TextStyle(fontSize: 13),
+                  ),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.white,
                     side: const BorderSide(color: Colors.white, width: 1.5),
@@ -298,11 +309,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      data['title'] as String,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 15,
+                    Flexible(
+                      child: Text(
+                        data['title'] as String,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                        ),
                       ),
                     ),
                   ],
@@ -329,11 +344,9 @@ class _HomeScreenState extends State<HomeScreen> {
       margin: const EdgeInsets.symmetric(horizontal: 24),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFFECFDF5), Color(0xFFD1FAE5)],
-        ),
+        color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFF6EE7B7)),
+        border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -349,21 +362,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Icon(Icons.shield, color: Colors.white, size: 20),
               ),
               const SizedBox(width: 12),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Ваша безопасность',
-                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
-                  ),
-                  Text(
-                    'Мы объясняем КАК мы защищаем',
-                    style: TextStyle(
-                      color: AppTheme.textSecondary,
-                      fontSize: 12,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Ваша безопасность',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 17,
+                      ),
                     ),
-                  ),
-                ],
+                    Text(
+                      'Мы объясняем КАК мы защищаем',
+                      style: TextStyle(
+                        color: AppTheme.textSecondary,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -393,9 +411,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Icon(icon, color: AppTheme.accent, size: 18),
           const SizedBox(width: 10),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+          Flexible(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),
@@ -501,7 +521,7 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFE5E7EB)),
+        border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -539,24 +559,30 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Icon(icon, color: AppTheme.primary, size: 20),
           ),
           const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
                 ),
-              ),
-              Text(
-                sub,
-                style: const TextStyle(
-                  color: AppTheme.textSecondary,
-                  fontSize: 12,
+                Text(
+                  sub,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: AppTheme.textSecondary,
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

@@ -150,9 +150,9 @@ class _PolicyScreenState extends State<PolicyScreen>
             margin: const EdgeInsets.only(top: 8),
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: const Color(0xFFF0FDF4),
+              color: Theme.of(context).colorScheme.secondaryContainer,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: const Color(0xFFBBF7D0)),
+              border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
             ),
             child: const Row(
               children: [

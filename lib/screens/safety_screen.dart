@@ -17,8 +17,8 @@ class SafetyScreen extends StatelessWidget {
             _buildSection2(context),
             _buildSection3(context),
             _buildSection4(context),
-            _buildSection5(),
-            _buildOfflineTips(),
+            _buildSection5(context),
+            _buildOfflineTips(context),
           ],
         ),
       ),
@@ -206,15 +206,15 @@ class SafetyScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSection5() {
+  Widget _buildSection5(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: const Color(0xFFF0FDF4),
+          color: Theme.of(context).colorScheme.secondaryContainer,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFBBF7D0)),
+          border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -258,14 +258,14 @@ class SafetyScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOfflineTips() {
+  Widget _buildOfflineTips(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 0, 16, 24),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF7ED),
+        color: AppTheme.warning.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFFED7AA)),
+        border: Border.all(color: AppTheme.warning.withValues(alpha: 0.4)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -279,7 +279,6 @@ class SafetyScreen extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
-                  color: Color(0xFF92400E),
                 ),
               ),
             ],
@@ -445,7 +444,6 @@ class SafetyScreen extends StatelessWidget {
               text,
               style: const TextStyle(
                 fontSize: 13,
-                color: Color(0xFF92400E),
                 height: 1.4,
               ),
             ),
